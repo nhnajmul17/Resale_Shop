@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmail
 const initialState = {
     email: '',
     name: '',
+    userImage: '',
     isLoading: false,
     isError: false,
     message: ''
@@ -39,7 +40,7 @@ export const ResetPassword = createAsyncThunk("auth/ResetPassword", async ({ ema
 
 export const loginGoogle = createAsyncThunk('auth/loginGoogle', async (provider) => {
     const data = await signInWithPopup(auth, provider)
-    console.log(data)
+
 })
 
 
@@ -51,10 +52,12 @@ const AuthSlice = createSlice({
         logout: (state) => {
             state.email = "";
             state.name = "";
+            state.userImage = '';
         },
         setUser: (state, action) => {
             state.email = action.payload.email
             state.name = action.payload.name
+            state.userImage = action.payload.image
             state.isLoading = false
         },
 
@@ -112,6 +115,7 @@ const AuthSlice = createSlice({
                 state.isError = true;
                 state.message = action.error.message;
             })
+
     }
 
 })

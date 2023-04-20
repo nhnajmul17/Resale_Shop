@@ -4,14 +4,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { SigninUser, loginGoogle } from '../../Utils/Redux/AuthSlice/AuthSlice';
 import { GoogleAuthProvider } from 'firebase/auth';
+import { FcGoogle } from 'react-icons/fc';
 
 const Login = () => {
+
+    const provider = new GoogleAuthProvider();
 
     const { handleSubmit, register, reset } = useForm();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { isLoading, email } = useSelector(state => state.auth)
-    const provider = new GoogleAuthProvider();
+    const { isLoading, email, message } = useSelector(state => state.auth)
 
 
     const onSubmit = (data) => {
@@ -25,9 +27,9 @@ const Login = () => {
     }, [email, isLoading, navigate])
 
     return (
-        <div className='h-[500px] flex flex-col justify-center items-center'>
+        <div className='min-h-screen flex flex-col justify-center items-center'>
             <h2 className='text-4xl'>Login</h2>
-            {/* {isError ? <p className='text-red-500'>{error}</p> : ''} */}
+            {message ? <p className='text-red-500'>{message}</p> : ''}
             <div className='w-96'>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-control w-full">
@@ -48,7 +50,7 @@ const Login = () => {
             <p>Don't Have an account? <Link to='/signup' className='text-info'>Create now.</Link></p>
             <p>Forget Your Password? <Link to='/reset' className='text-info'>Reset Password</Link></p>
 
-            <button className='btn btn-accent my-2' onClick={() => dispatch(loginGoogle(provider))} >Login With Google</button>
+            <button className='btn btn-accent my-2' onClick={() => dispatch(loginGoogle(provider))} ><FcGoogle className='text-2xl mx-2' /> Login With Google</button>
         </div>
     );
 };

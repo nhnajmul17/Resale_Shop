@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 import { logout } from '../../Utils/Redux/AuthSlice/AuthSlice';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../Utils/Firebase/firebase.config';
+import { BiLogIn, BiLogOut } from 'react-icons/bi'
 
 const Navbar = () => {
 
-    const { name, email } = useSelector(state => state.auth)
+    const { name, email, userImage } = useSelector(state => state.auth)
     const dispatch = useDispatch()
 
     const handlelogout = () => {
@@ -46,12 +47,15 @@ const Navbar = () => {
                 <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
-                            <img src="https://www.pikpng.com/pngl/m/80-805523_default-avatar-svg-png-icon-free-download-264157.png" />
+                            {userImage ? <img src={userImage} />
+                                :
+                                <img src="https://www.pikpng.com/pngl/m/80-805523_default-avatar-svg-png-icon-free-download-264157.png" />
+                            }
                         </div>
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         {name && <li className='font-bold'><Link>{name}</Link></li>}
-                        {email ? <li className='font-bold'><Link onClick={handlelogout}>Logout</Link></li> : <li><Link to='/login' >Login</Link></li>}
+                        {email ? <li className='font-bold'><Link onClick={handlelogout}>Logout <BiLogOut className='font-bold text-lg' /></Link></li> : <li className='font-bold'><Link to='/login' >Login <BiLogIn className='font-bold text-lg' /></Link></li>}
                     </ul>
                 </div>
             </div>

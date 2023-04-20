@@ -12,7 +12,8 @@ function App() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        dispatch(setUser({ email: user.email, name: user.displayName }))
+        console.log(user)
+        dispatch(setUser({ email: user.email, name: user.displayName, image: user.photoURL }))
       }
     }, [])
   })

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { CreateUser } from '../../Utils/Redux/AuthSlice/AuthSlice';
 
@@ -8,6 +8,7 @@ const SignUp = () => {
 
     const { handleSubmit, register } = useForm();
     const [Error, setError] = useState('')
+    const { message } = useSelector(state => state.auth)
     const dispatch = useDispatch();
 
     const onSubmit = (data) => {
@@ -19,9 +20,10 @@ const SignUp = () => {
         }
     }
     return (
-        <div className='h-[500px] flex flex-col justify-center items-center mx-5'>
+        <div className='min-h-screen  flex flex-col justify-center items-center mx-5'>
             <h2 className='text-4xl'>SignUp</h2>
             {Error && <p className='text-red-500'>{Error}</p>}
+            {message && <p className='text-red-500'>{message}</p>}
             <div className='w-96'>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-control w-full">
