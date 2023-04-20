@@ -8,6 +8,7 @@ const initialState = {
     userImage: '',
     isLoading: false,
     isError: false,
+    isSuccess: false,
     message: ''
 }
 
@@ -30,7 +31,7 @@ export const SigninUser = createAsyncThunk("auth/SigninUser", async ({ email, pa
 
 })
 
-export const ResetPassword = createAsyncThunk("auth/ResetPassword", async ({ email }) => {
+export const ResetPass = createAsyncThunk("auth/ResetPass", async ({ email }) => {
     await sendPasswordResetEmail(auth, email)
 
 })
@@ -99,17 +100,17 @@ const AuthSlice = createSlice({
                 state.isError = true;
                 state.message = action.error.message;
             })
-            .addCase(ResetPassword.pending, (state) => {
+            .addCase(ResetPass.pending, (state) => {
                 state.isLoading = true;
                 state.isError = false;
             })
-            .addCase(ResetPassword.fulfilled, (state, action) => {
+            .addCase(ResetPass.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.message = "An Email Sent";
                 state.isError = false;
 
             })
-            .addCase(ResetPassword.rejected, (state, action) => {
+            .addCase(ResetPass.rejected, (state, action) => {
                 state.isLoading = false;
                 state.email = "";
                 state.isError = true;
