@@ -5,6 +5,7 @@ import Main from "../Layout/Main/Main";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import ResetPassword from "../Pages/ResetPassword/ResetPassword";
+import CategoryDetails from "../Components/Home/Category/CategoryDetails/CategoryDetails";
 
 export const Router = createBrowserRouter([
     {
@@ -19,6 +20,13 @@ export const Router = createBrowserRouter([
                 path: '/about',
                 element: <About></About>
             },
+            {
+                path: '/category/:name',
+                element: <CategoryDetails></CategoryDetails>
+
+            },
+
+
             {
                 path: '/login',
                 element: <Login></Login>
