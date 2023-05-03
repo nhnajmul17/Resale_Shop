@@ -18,10 +18,6 @@ const CategoryDetails = () => {
                             <h2 className="card-title">{product.productName}</h2>
                             <p>Actual Price: ${product.price}</p>
                             <p>Resale Price: ${product.resalePrice}</p>
-
-                            <div className="card-actions">
-                                <button className="btn btn-primary">Buy Now</button>
-                            </div>
                             <div className="card-actions">
                                 <Link to={`/category/${product.brand}/${product._id}`}> <button className="btn btn-primary">View Details</button></Link>
                             </div>

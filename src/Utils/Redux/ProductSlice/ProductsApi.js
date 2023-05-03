@@ -7,8 +7,15 @@ const productApi = ApiSlice.injectEndpoints({
                 url: '/product',
 
             })
+        }),
+        bookProduct: builder.mutation({
+            query: (data) => ({
+                method: "POST",
+                url: '/booking',
+                body: data,
+            })
         })
     })
 })
 
-export const { useGetProductsQuery } = productApi
+export const { useGetProductsQuery, useBookProductMutation } = productApi
