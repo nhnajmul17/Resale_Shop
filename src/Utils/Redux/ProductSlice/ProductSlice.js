@@ -4,7 +4,7 @@ const initialState = {
     products: [],
     isLoading: true,
     isError: false,
-    message: ''
+    message: '',
 }
 const ProductSlice = createSlice({
     name: "Product",

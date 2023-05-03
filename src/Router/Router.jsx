@@ -6,6 +6,7 @@ import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import ResetPassword from "../Pages/ResetPassword/ResetPassword";
 import CategoryDetails from "../Components/Home/Category/CategoryDetails/CategoryDetails";
+import ProductDetails from "../Components/Home/ProductDetails/ProductDetails";
 
 export const Router = createBrowserRouter([
     {
@@ -23,6 +24,11 @@ export const Router = createBrowserRouter([
             {
                 path: '/category/:name',
                 element: <CategoryDetails></CategoryDetails>
+
+            },
+            {
+                path: '/category/:name/:id',
+                element: <ProductDetails />
 
             },
 

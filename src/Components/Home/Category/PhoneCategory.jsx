@@ -10,7 +10,7 @@ const PhoneCategory = () => {
             <h1 className='text-4xl font-bold my-5'>CATEGORY</h1>
             <div className='grid gap-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1'>
                 {data.data?.map(category =>
-                    <div data-aos="flip-up" key={category._id} className="card w-96 shadow-xl ">
+                    <div data-aos="flip-up" data-aos-duration="2000" key={category._id} className="card w-96 shadow-xl ">
                         <figure><img src={category.categoryImage} alt={category.categoryName} /></figure>
                         <div className="card-body">
                             <h2 className="card-title justify-center font-bold text-2xl">{category.categoryName}</h2>
